@@ -2,6 +2,8 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+
+
 public class GoogleMapsApiClient extends ApiClient {
     private final String zipcode;
 
