@@ -11,7 +11,7 @@ abstract class ApiClient {
     }
 
     // Abstract method to get the specific URI for each API client
-    protected abstract URI getUri() throws Exception;
+    abstract URI getUri() throws Exception;
 
     public String getApiResponse(){
         String response = null;
