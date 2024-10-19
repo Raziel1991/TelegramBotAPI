@@ -23,7 +23,7 @@ abstract class ApiClient {
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Accept", "application/json");
 
-            if (connection.getResponseCode() == connection.HTTP_OK) {
+            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder content = new StringBuilder();
                 String line;
