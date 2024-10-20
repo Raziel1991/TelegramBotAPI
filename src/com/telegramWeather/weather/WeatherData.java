@@ -1,3 +1,5 @@
+package com.telegramWeather.weather;
+
 public class WeatherData {
     int dt;
     int sunrise;

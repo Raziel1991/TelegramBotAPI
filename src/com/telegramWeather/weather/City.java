@@ -1,3 +1,5 @@
+package com.telegramWeather.weather;
+
 public abstract class City {
     private final String name;
     private final double lat;

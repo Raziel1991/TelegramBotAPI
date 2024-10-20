@@ -1,9 +1,11 @@
+package com.telegramWeather.weather;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
-abstract class ApiClient {
+public abstract class ApiClient {
     protected String apiKey;
 
     public ApiClient(String apiKey) {
@@ -11,7 +13,7 @@ abstract class ApiClient {
     }
 
     // Abstract method to get the specific URI for each API client
-    abstract URI getUri() throws Exception;
+    public abstract URI getUri() throws Exception;
 
     public String getApiResponse(){
         String response = null;

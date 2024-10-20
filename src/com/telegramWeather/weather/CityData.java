@@ -1,3 +1,5 @@
+package com.telegramWeather.weather;
+
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import com.google.gson.Gson;
@@ -43,7 +45,7 @@ public class CityData extends City {
 
         // Extract relevant info from the first result (assuming the first result is valid)
         if (cityData.results != null && !cityData.results.isEmpty()) {
-            Result result = cityData.results.getFirst();
+            Result result = cityData.results.get(0);
             Geometry.Location location = result.geometry.location;
 
             String name = null, country = null, state = null;

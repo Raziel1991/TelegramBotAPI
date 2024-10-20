@@ -1,9 +1,6 @@
+package com.telegramWeather.weather;
+
 import java.net.URI;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.net.URI;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 
 public class WeatherApiClient extends ApiClient {
     private static final String[] EXCLUSIONS = {"minutely", "daily"};

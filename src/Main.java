@@ -1,4 +1,11 @@
 import com.google.gson.Gson;
+import com.telegramWeather.util.ReadKeyFromFile;
+import com.telegramWeather.bot.TelegramBot;
+import com.telegramWeather.weather.*;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +17,7 @@ public class Main {
         String zipCode = "M5T2Y4";
 
 
-        // Create a GoogleMapsApiClient instance using the ZIP code and Google Maps API key
+        // Create a com.telegramWeather.weather.GoogleMapsApiClient instance using the ZIP code and Google Maps API key
         ApiClient googleClient = new GoogleMapsApiClient(zipCode, ReadKeyFromFile.getKeyFromFile(googleApiKeyPath));
 
 
@@ -18,7 +25,7 @@ public class Main {
         String cityDataJsonResponse = googleClient.getApiResponse();
 
 
-        // Deserialize the JSON response to a CityData object
+        // Deserialize the JSON response to a com.telegramWeather.weather.CityData object
         CityData cityData = CityData.fromJson(cityDataJsonResponse);
 
         //Print Google API URI
@@ -44,6 +51,14 @@ public class Main {
 
 
         System.out.println(cityWeather.toString());
+
+        /// Telegram stuff /////
+        try {
+            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+            botsApi.registerBot(new TelegramBot(cityWeather));
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }

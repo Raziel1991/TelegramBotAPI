@@ -1,9 +1,13 @@
+package com.telegramWeather.weather;
+
 public class CityWeather {
-    private double lat;
-    private double lon;
-    private String timezone;
-    private int timezone_offset;
-    private WeatherData current;
+    //TODO: get the city name
+    private final String cityName = "";
+    private final double lat;
+    private final double lon;
+    private final String timezone;
+    private final int timezone_offset;
+    private final WeatherData current;
 
 
     public CityWeather(double lat, double lon, String timezone, int timezone_offset, WeatherData current) {
@@ -12,6 +16,7 @@ public class CityWeather {
         this.timezone = timezone;
         this.timezone_offset = timezone_offset;
         this.current = current;
+
     }
 
 
@@ -32,7 +37,7 @@ public class CityWeather {
     }
 
 
-    // Getters for specific WeatherData fields for easier access
+    // Getters for specific com.telegramWeather.weather.WeatherData fields for easier access
     public int getDt() {
         return current.getDt();
     }
@@ -77,14 +82,9 @@ public class CityWeather {
 
     @Override
     public String toString() {
-        return "CityWeather{" +
-                "lat=" + lat +
-                ", lon=" + lon +
-                ", temperature=" + current.getTemp() +
-                ", feels like=" + current.getFeelsLike() +
-                ", timezone='" + timezone + '\'' +
-                ", timezone_offset=" + timezone_offset +
-                ", current=" + current +
-                '}';
+        return "Temperature: " + current.getTemp() +
+                "\nFeels like: " + current.getFeelsLike() +
+                "\nTimezone: " + timezone +
+                "\nClouds: " + current.getClouds();
     }
 }
