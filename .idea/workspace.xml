@@ -4,26 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41a599db-fb6a-4527-84b4-d4e1f5fb6329" name="Changes" comment="All data fetch as required and deserialize to a proper object.  &#10;Ready to start the bot.">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/telegramWeather/bot/TelegramBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="41a599db-fb6a-4527-84b4-d4e1f5fb6329" name="Changes" comment="All Fetch Data can now be sent by text to BotPrepareForWeatherBot.">
+      <change afterPath="$PROJECT_DIR$/src/com/telegramWeather/util/WeatherHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/weather/ApiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/weather/City.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CityData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/weather/CityData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CityWeather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/weather/CityWeather.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GoogleMapsApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/weather/GoogleMapsApiClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ReadKeyFromFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/util/ReadKeyFromFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WeatherApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/weather/WeatherApiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WeatherData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/weather/WeatherData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/telegramWeather/bot/TelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/bot/TelegramBot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +124,7 @@
       <workItem from="1729349895330" duration="6001000" />
       <workItem from="1729429424077" duration="4220000" />
       <workItem from="1729435145419" duration="784000" />
-      <workItem from="1729436664815" duration="12693000" />
+      <workItem from="1729436664815" duration="30536000" />
     </task>
     <task id="LOCAL-00001" summary="Completed the HTTP API response code and started google maps client api">
       <option name="closed" value="true" />
@@ -173,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729360247298</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="All Fetch Data can now be sent by text to BotPrepareForWeatherBot.">
+      <option name="closed" value="true" />
+      <created>1729452407449</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729452407449</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,7 +178,8 @@
     <MESSAGE value="Just progess to save the work" />
     <MESSAGE value="Added API call to Google Maps, parsed JSON response, and printed city information, and weather API URI functional" />
     <MESSAGE value="All data fetch as required and deserialize to a proper object.  &#10;Ready to start the bot." />
-    <option name="LAST_COMMIT_MESSAGE" value="All data fetch as required and deserialize to a proper object.  &#10;Ready to start the bot." />
+    <MESSAGE value="All Fetch Data can now be sent by text to BotPrepareForWeatherBot." />
+    <option name="LAST_COMMIT_MESSAGE" value="All Fetch Data can now be sent by text to BotPrepareForWeatherBot." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -196,5 +190,11 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="weatherResponse" />
+        <watch expression="cityData" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

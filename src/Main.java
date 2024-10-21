@@ -55,7 +55,7 @@ public class Main {
         /// Telegram stuff /////
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-            botsApi.registerBot(new TelegramBot(cityWeather));
+            botsApi.registerBot(new TelegramBot());
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
