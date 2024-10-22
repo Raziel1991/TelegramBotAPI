@@ -1,6 +1,7 @@
 package com.telegramWeather.weather;
 
 import java.util.List;
+import java.time.LocalTime;
 
 // Main class for the entire JSON response
 public class WeatherResponse {
@@ -10,6 +11,7 @@ public class WeatherResponse {
     private int timezone_offset;
     private Current current;
     private List<Hourly> hourly;
+
 
     // Getters and Setters
     public double getLat() { return lat; }
@@ -29,6 +31,18 @@ public class WeatherResponse {
 
     public List<Hourly> getHourly() { return hourly; }
     public void setHourly(List<Hourly> hourly) { this.hourly = hourly; }
+
+    public double getTemperature(){ return  current.getTemp(); }
+    public double getFeelsLike(){ return  current.getFeelsLike(); }
+
+    public double getTemperatureHourly(int time){
+        LocalTime currentTime = LocalTime.now();
+        return  hourly.get(time - currentTime.getHour()).getTemp();
+    }
+    public double getFeelsLikeHourly(int time){
+        LocalTime currentTime = LocalTime.now();
+        return  hourly.get(time - currentTime.getHour()).getFeelsLike();
+    }
 
     @Override
     public String toString() {

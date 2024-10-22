@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41a599db-fb6a-4527-84b4-d4e1f5fb6329" name="Changes" comment="Completed start and get weather buttons with functionality">
-      <change afterPath="$PROJECT_DIR$/src/com/telegramWeather/weather/WeatherResponse.java" afterDir="false" />
+    <list default="true" id="41a599db-fb6a-4527-84b4-d4e1f5fb6329" name="Changes" comment="able to change zipcodes now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/telegramWeather/bot/TelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/bot/TelegramBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/telegramWeather/util/WeatherHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/util/WeatherHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/telegramWeather/weather/CityWeather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/weather/CityWeather.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/telegramWeather/weather/WeatherResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/telegramWeather/weather/WeatherResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,32 +50,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.java.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/hampt/IdeaProjects/TelegramBotAPI/lib/gson-2.10.1.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.java.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/hampt/IdeaProjects/TelegramBotAPI/lib/gson-2.10.1.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -127,7 +124,8 @@
       <workItem from="1729429424077" duration="4220000" />
       <workItem from="1729435145419" duration="784000" />
       <workItem from="1729436664815" duration="32353000" />
-      <workItem from="1729523721605" duration="29146000" />
+      <workItem from="1729523721605" duration="29334000" />
+      <workItem from="1729601467862" duration="4363000" />
     </task>
     <task id="LOCAL-00001" summary="Completed the HTTP API response code and started google maps client api">
       <option name="closed" value="true" />
@@ -185,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729550981546</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="able to change zipcodes now">
+      <option name="closed" value="true" />
+      <created>1729575985749</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1729575985749</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +206,8 @@
     <MESSAGE value="All Fetch Data can now be sent by text to BotPrepareForWeatherBot." />
     <MESSAGE value="Created WeatherHandler to manage API requests for city and weather data, including deserialization of responses into CityWeather objects. Added error handling and simplified API key management." />
     <MESSAGE value="Completed start and get weather buttons with functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed start and get weather buttons with functionality" />
+    <MESSAGE value="able to change zipcodes now" />
+    <option name="LAST_COMMIT_MESSAGE" value="able to change zipcodes now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

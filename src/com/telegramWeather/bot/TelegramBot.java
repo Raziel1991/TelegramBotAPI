@@ -19,7 +19,9 @@ public class TelegramBot extends TelegramLongPollingBot {
     private Map<Long, String> userZipCodes = new HashMap<>();
     private Map<Long, Integer> userReturnTime = new HashMap<>();
 
+    // Default map values
     private final String defaultZipCode = "M5T2Y4"; // Default ZIP code
+    private final int defaultReturnTime = 18;
 
     private Map<Long, Boolean> awaitingZipCode = new HashMap<>(); // Track if the user is expected to enter a ZIP code
 
@@ -48,6 +50,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             long chatId = message.getChatId();
             String userInput = message.getText();
             userZipCodes.putIfAbsent(chatId, defaultZipCode); // Default ZIP code if not set
+            userReturnTime.putIfAbsent(chatId, defaultReturnTime);
 
             System.out.println("User: " + message.getFrom().getFirstName() + " " + message.getFrom().getLastName() +
                     " said " + userInput);
@@ -67,10 +70,12 @@ public class TelegramBot extends TelegramLongPollingBot {
                 if (message.getText().equals("/start")) {
                     sendTextWithButton(chatId, "Click the button below to get the weather:");
                 } else if (message.getText().equals("/weather")) {
-                    sendWeatherUpdate(chatId, userZipCodes.get(chatId));
+                    sendWeatherUpdate(chatId, userZipCodes.get(chatId), userReturnTime.get(chatId));
                 } else if (message.getText().equals("/zipcode")) {
                     sendText(chatId, "Enter the ZIP code:");
                     awaitingZipCode.put(chatId, true); // Set state to expect a ZIP code input next
+                }else if (message.getText().equals("/returntime")) {
+                    sendTimeSelection(chatId);
                 }
             }
         } else if (update.hasCallbackQuery()) {
@@ -79,7 +84,14 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             if (callbackData.equals("get_weather")) {
                 String zipCode = userZipCodes.getOrDefault(chatId, defaultZipCode);
-                sendWeatherUpdate(chatId, zipCode);
+                sendWeatherUpdate(chatId, userZipCodes.get(chatId), userReturnTime.get(chatId));
+            }else if (callbackData.startsWith("time_")) {
+                int selectedHour = Integer.parseInt(callbackData.split("_")[1]);
+                userReturnTime.put(chatId, selectedHour);
+                sendText(chatId, "You've selected " + selectedHour + ":00 PM for weather updates.");
+
+                // Now you can schedule weather updates for this user at the selected time
+                scheduleWeatherUpdateAtSelectedTime(chatId, selectedHour);
             }
         }
     }
@@ -91,11 +103,19 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     // Helper method to send weather update
-    private void sendWeatherUpdate(long chatId, String zipCode) {
+    private void sendWeatherUpdate(long chatId, String zipCode, int time) {
         WeatherResponse weatherResponse = WeatherHandler.getWeatherByZipCode(zipCode);
 
         if (weatherResponse != null) {
-            sendText(chatId, weatherResponse.toString());
+            sendText(chatId, "Current Weather: " +
+                            "\nTimezone: " + weatherResponse.getTimezone() +
+                            "\nTemperature: " + weatherResponse.getTemperature() +
+                            "\nFeels Like: " + weatherResponse.getFeelsLike() +
+                            "\n\nWeather for time: " + time + ":00 " +
+                            "\nTimezone: " + weatherResponse.getTimezone() +
+                            "\nTemperature: " + weatherResponse.getTemperatureHourly(time) +
+                            "\nFeels Like: " + weatherResponse.getFeelsLikeHourly(time)
+                    );
         } else {
             sendText(chatId, "Sorry, couldn't retrieve the weather for ZIP code: " + zipCode);
         }
@@ -148,7 +168,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         scheduler.scheduleAtFixedRate(() -> {
             for (Long chatId : userZipCodes.keySet()) {
                 String zipCode = userZipCodes.getOrDefault(chatId, "M5T2Y4");
-                sendWeatherUpdate(chatId, zipCode);
+                sendWeatherUpdate(chatId, userZipCodes.get(chatId), userReturnTime.get(chatId));
             }
         }, delay, period, TimeUnit.SECONDS);
     }
@@ -173,4 +193,53 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         return (targetTime - currentTime) / 1000; // Return delay in seconds
     }
+    private void scheduleWeatherUpdateAtSelectedTime(Long chatId, int hour) {
+        long delay = calculateDelayUntilNight(hour);
+
+        scheduler.scheduleAtFixedRate(() -> {
+            String zipCode = userZipCodes.getOrDefault(chatId, defaultZipCode);
+            sendWeatherUpdate(chatId, userZipCodes.get(chatId), userReturnTime.get(chatId));
+        }, delay, 24 * 60 * 60, TimeUnit.SECONDS); // Schedule daily updates at the selected time
+    }
+
+
+    private void sendTimeSelection(Long chatId) {
+        SendMessage message = new SendMessage();
+        message.setChatId(chatId.toString());
+        message.setText("Select the time you want to receive weather updates:");
+
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+
+        // Create time options
+        for (int hour = 18; hour <= 24; hour++) {
+            List<InlineKeyboardButton> row = new ArrayList<>();
+            InlineKeyboardButton button = new InlineKeyboardButton();
+            button.setText(hour + ":00 PM");
+            button.setCallbackData("time_" + hour); // Store hour in callback data
+            row.add(button);
+            rows.add(row);
+        }
+
+        markup.setKeyboard(rows);
+        message.setReplyMarkup(markup);
+
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
+
+//Placeholder to change the commands in BotFather
+/*
+
+start - Starts the bot
+weather - Get current weather
+zipcode - Set the default zipcode
+returntime - Set the returning time from work
+*/
