@@ -1,5 +1,7 @@
 package com.telegramWeather.weather;
 
+import java.util.List;
+
 public class CityWeather {
     //TODO: get the city name
     private final String cityName = "";
@@ -8,7 +10,7 @@ public class CityWeather {
     private final String timezone;
     private final int timezone_offset;
     private final WeatherData current;
-
+    private List<WeatherData> hourly;
 
     public CityWeather(double lat, double lon, String timezone, int timezone_offset, WeatherData current) {
         this.lat = lat;

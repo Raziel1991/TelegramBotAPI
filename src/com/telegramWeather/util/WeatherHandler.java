@@ -8,7 +8,7 @@ public class WeatherHandler {
     private static final String WEATHER_API_PATH = "C:\\Users\\hampt\\IdeaProjects\\weatherKey.txt";
     private static final String GOOGLE_API_KEY_PATH = "C:\\Users\\hampt\\IdeaProjects\\googleMapsKey.txt";
 
-    public static CityWeather getWeatherByZipCode(String zipCode) {
+    public static WeatherResponse getWeatherByZipCode(String zipCode) {
         try {
             // Google Maps API Client to get city data
             ApiClient gmClient = new GoogleMapsApiClient(zipCode, ReadKeyFromFile.getKeyFromFile(GOOGLE_API_KEY_PATH));
@@ -23,7 +23,7 @@ public class WeatherHandler {
             String weatherResponse = weatherApiClient.getApiResponse();
 
             // Deserialize and return CityWeather object
-            return new Gson().fromJson(weatherResponse, CityWeather.class);
+            return new Gson().fromJson(weatherResponse, WeatherResponse.class);
 
         } catch (Exception e) {
             e.printStackTrace();

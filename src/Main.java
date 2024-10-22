@@ -1,7 +1,7 @@
 import com.google.gson.Gson;
 import com.telegramWeather.util.ReadKeyFromFile;
-import com.telegramWeather.bot.TelegramBot;
 import com.telegramWeather.weather.*;
+import com.telegramWeather.bot.TelegramBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
@@ -47,10 +47,9 @@ public class Main {
 
         ApiClient weatherClient = new WeatherApiClient(ReadKeyFromFile.getKeyFromFile(weatherApiPath),cityData.getLat(), cityData.getLon());
         String cityWeatherJsonResponse = weatherClient.getApiResponse();
-        CityWeather cityWeather = new Gson().fromJson(cityWeatherJsonResponse, CityWeather.class);
+        WeatherResponse weatherResponse = new Gson().fromJson(cityWeatherJsonResponse, WeatherResponse.class);
 
-
-        System.out.println(cityWeather.toString());
+        System.out.println(weatherResponse.toString());
 
         /// Telegram stuff /////
         try {
