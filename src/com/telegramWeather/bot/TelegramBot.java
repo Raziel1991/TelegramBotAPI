@@ -14,6 +14,11 @@ import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class TelegramBot extends TelegramLongPollingBot {
     // Store user preferences, including ZIP codes, return from work time.
     private Map<Long, String> userZipCodes = new HashMap<>();
@@ -111,7 +116,9 @@ public class TelegramBot extends TelegramLongPollingBot {
                             "\nTimezone: " + weatherResponse.getTimezone() +
                             "\nTemperature: " + weatherResponse.getTemperature() +
                             "\nFeels Like: " + weatherResponse.getFeelsLike() +
+                            "\nTime: " + convertUnixToReadableTime(weatherResponse.getDt()) +
                             "\n\nWeather for time: " + time + ":00 " +
+                            "\nTime: " + convertUnixToReadableTime(weatherResponse.getDtHourly(time)) +
                             "\nTimezone: " + weatherResponse.getTimezone() +
                             "\nTemperature: " + weatherResponse.getTemperatureHourly(time) +
                             "\nFeels Like: " + weatherResponse.getFeelsLikeHourly(time)
@@ -230,8 +237,12 @@ public class TelegramBot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
     }
-
-
+    public String convertUnixToReadableTime(long dt) {
+        Instant instant = Instant.ofEpochSecond(dt);
+        ZonedDateTime dateTime = instant.atZone(ZoneId.systemDefault());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return dateTime.format(formatter);
+    }
 
 }
 

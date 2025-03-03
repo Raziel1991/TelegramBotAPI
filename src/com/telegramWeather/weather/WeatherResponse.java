@@ -34,6 +34,7 @@ public class WeatherResponse {
 
     public double getTemperature(){ return  current.getTemp(); }
     public double getFeelsLike(){ return  current.getFeelsLike(); }
+    public long getDt(){ return  current.getDt(); }
 
     public double getTemperatureHourly(int time){
         LocalTime currentTime = LocalTime.now();
@@ -42,6 +43,11 @@ public class WeatherResponse {
     public double getFeelsLikeHourly(int time){
         LocalTime currentTime = LocalTime.now();
         return  hourly.get(time - currentTime.getHour()).getFeelsLike();
+    }
+
+    public long getDtHourly(int time){
+        LocalTime currentTime = LocalTime.now();
+        return  hourly.get(time - currentTime.getHour()).getDt();
     }
 
     @Override
